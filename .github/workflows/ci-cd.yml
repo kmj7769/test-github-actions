@@ -66,7 +66,7 @@ jobs:
           echo "node_exists=$NODE_EXISTS" >> $GITHUB_OUTPUT
       
       - name: Install Docker on EC2
-        id: steps.check-docker.outputs.docker_exists == 'false'
+        if: steps.check-docker.outputs.docker_exists == 'false'
         run: |
             ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             sudo apt-get update
